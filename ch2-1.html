@@ -1,17 +1,30 @@
 <html ng-app>
-<body ng-controller="TextController">
-  <p>{{mes.res.t}}</p>
-  <script
+<head>
+      <script
       src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
   </script>
+</head>
+<body>
+  <form ng-controller="StartUpController">
+    <input type="checkbox" ng-model="youChecedIt">
+    <p>{{youChecedIt}}</p>
+
+    <br/>
+    Starting: <input ng-model="funding.startEstimate">
+    <p>Recomendation: {{funding.needed}}</p>
+  </form>
   <script>
-  	var messages = {};
-  	messages.someText = "I've started my journey with angular! Hell yeah!";
-  	messages.res=[];
-  	messages.res.t="hi";
-    function TextController($scope) {
-      $scope.mes = messages;
-    }
+    function StartUpController($scope) {
+        //default values
+        $scope.youChecedIt = true;
+        $scope.funding = { startEstimate: 0};
+
+        computeNeeded = function(){
+            $scope.funding.needed = $scope.funding.startEstimate * 10;
+        };
+
+        $scope.$watch("funding.startEstimate", computeNeeded);
+        }
   </script>
 </body>
 </html>
