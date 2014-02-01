@@ -1,0 +1,17 @@
+<html ng-app>
+<body ng-controller="TextController">
+  <p>{{mes.res.t}}</p>
+  <script
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
+  </script>
+  <script>
+  	var messages = {};
+  	messages.someText = "I've started my journey with angular! Hell yeah!";
+  	messages.res=[];
+  	messages.res.t="hi";
+    function TextController($scope) {
+      $scope.mes = messages;
+    }
+  </script>
+</body>
+</html>
