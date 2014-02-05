@@ -1,0 +1,37 @@
+<html ng-app="ShoppingModule">
+<head>
+	<title>modules</title>
+	<script
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js">
+  </script>
+</head>
+<body ng-controller="ShoppingController">
+	<h1>Shop!</h1>
+	<table>
+		<tr ng-repeat="item in items">
+			<td>{{item.title}}</td>
+			<td>{{item.description}}</td>
+			<td>{{item.price | currency}}</td>
+		</tr>
+	</table>	
+<script type="text/javascript">
+
+	function ShoppingController($scope, Items){
+		$scope.items = Items.query();
+	}
+
+	var shoppingModule = angular.module("ShoppingModule", []);
+
+	shoppingModule.factory("Items", function(){
+		var items = {};
+		items.query = function(){
+			return [
+			{title:"title1", description: "This is description", price: 6.22},
+			{title:"title2", description: "Description2", price: 4.54},
+			{title:"Yoda", description: "description this is", price: 7.41}];
+		};
+		return items;
+	});
+</script>
+</body>
+</html>
